@@ -54,7 +54,7 @@ void push(List *list, int position, int value)
             return;
         }
 
-        for(i=0; i<position; i++){
+        for(i=1; i<position; i++){
             tmp = tmp->next;
         }
 
@@ -93,7 +93,69 @@ void push(List *list, int position, int value)
     }
 }
 
+void pop(List *list, int position)
+{
+    if(position > list->size){
+        return;
+    }
 
+    Node *tmp;
+    int i;
+
+    if((position == 1)&&(list->size == 1)){
+        tmp = list->head;
+        list->head = NULL;
+        list->tail = NULL;
+        free(tmp);
+
+        return;
+    }
+
+    if(position <= list->size/2){
+        tmp = list->head;
+
+        if(position == 1){
+            list->head = tmp->next;
+            tmp->next->previous = NULL;
+            list->size--;
+            free(tmp);
+
+            return;
+        }
+
+        for(i=1; i==position; i++){
+            tmp = tmp->next;
+        }
+
+        tmp->next->previous = tmp->previous;
+        tmp->previous->next = tmp->next;
+        list->size--;
+
+        free(tmp);
+    } else {
+        tmp = list->tail;
+
+        if(position == list->size){
+            tmp->previous->next = NULL;
+            list->tail = tmp->previous;
+            list->size--;
+
+            free(tmp);
+
+            return;
+        }
+
+        for(i=list->size; i==position; i--){
+            tmp = tmp->previous;
+        }
+
+        tmp->previous->next = tmp->next;
+        tmp->next->previous = tmp->previous;
+        list->size--;
+
+        free(tmp);
+    }
+}
 
 
 
