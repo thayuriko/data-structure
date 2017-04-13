@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1489099482 source:c:\users\daeln\desktop\stack\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1489620857 source:c:\users\yuriko\dropbox\2017.1\estrutura de dados 1\aula2\main.c
+	<stdio.h>
+	<stdlib.h>
+

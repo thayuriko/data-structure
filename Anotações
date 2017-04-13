@@ -1,0 +1,30 @@
+//-----02/03/2017-----
+	
+	- ao inicializar um ponteiro, deve-se atribuir um valor a ele
+
+	- seja int k[4];
+	    k[3] = 4	<=>	*(k+3) = 5;
+	
+	- pois um vetor é um tipo de ponteiro e vetores săo alocados continuamente
+	
+	- um ponteiro dentro de uma struct contorna o problema de se ter um vetor muito longo sem espaço definido para ele
+
+
+//-----09/03/2017-----
+
+    Modelagem do projeto: Calculadora RPN
+    	- Se a entrada for um número
+    		imprime na tela
+    	
+    	- Se a entrada for um operador
+    		retira os dois últimos números
+    		faz-se a operação
+    		imprime o resultado na tela
+
+    	- switch p/ operações
+    	- declarar o vetor como char
+    	- usar ASCII para conversão dos chars
+
+    Conclusão
+    	Os últimos a entrar serão os primeiros a sair (LIFO) -> Pilha
+

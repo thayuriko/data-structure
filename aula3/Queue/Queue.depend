@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1490052334 source:c:\users\yuriko\dropbox\2017.1\estrutura de dados 1\aula3\queue\main.c
+
+1490230548 source:c:\users\yuriko\dropbox\2017.1\estrutura de dados 1\aula3\queue\priority_queue.c
+	<stdio.h>
+	<stdlib.h>
+
