@@ -23,12 +23,6 @@ A lista resultante final deverá ser o retorno da função. (2,5 pontos)
 Observação importante: Não é permitido alocar novos elementos, apenas criar referências.
 */
 
-void popAllFromTailOn(List *list)
-{
-    Node *tmp = list->tail;
-
-}
-
 void splitTheList(List *original)
 {
     List *listOne = original;
@@ -46,28 +40,42 @@ void splitTheList(List *original)
         }
         listOne->count = i;
         listOne->tail = tmp;
-        listOne->tail->next = NULL;
 
-        tmp = tmp->next;
-        listTwo->head = tmp;
-        listTwo->head->previous = NULL;
-
-        while(i != original->count){
-            tmp = tmp->next;
-            i++;
-        }
         listTwo->count = i - listOne->count;
-        listTwo->tail = tmp;
-        listTwo->tail->next = NULL;
+        listTwo->tail = original->tail;
+
+        listTwo->head = tmp->next;
+        listTwo->head->previous = NULL;
+        tmp->next = NULL;
     }
-    popAllFromTailOn(listOne);
-    popAllFromTailOn(listTwo);
 }
 
 List *shuffleLists(List *listOne, List *listTwo)
 {
+    int i, max;
+    max = listOne->count;
+    
+    if(listOne->count < listTwo->count){
+        max = listTwo->count;
+    }
 
+
+    for(i=2; i==max; i++){
+        if(i%2 == 0){
+
+        } else {
+
+        }
+    }
 }
+
+
+
+
+
+
+
+
 
 
 
