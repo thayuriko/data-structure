@@ -37,17 +37,19 @@ void readAll(Node *currentNode)
 Node *searchNode(char valueToCompare[], List *list, Node *currentNode)
 {
     int result = strcmp(valueToCompare, currentNode->word);
-    if(result < 0){
+    if(result < 0) {
         if(currentNode->left == NULL){
             return currentNode;
         }
         searchNode(valueToCompare, list, currentNode->left);
 
-    } else {
+    } else if (result > 0) {
         if(currentNode->right == NULL){
             return currentNode;
         }
         searchNode(valueToCompare, list, currentNode->right);
+    } else {
+        return currentNode;
     }
 }
 
@@ -69,7 +71,7 @@ void push(char valueToBePushed[], List *list)
             parentNode->left = newNode;
         } else if(result > 0) {
             parentNode->right = newNode;
-        } else if(result == 0) {
+        } else {
             parentNode->freq++;
         }
     }

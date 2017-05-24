@@ -1,1 +1,3 @@
-d a b c a b d
+This is a text file to check if my code works well
+I sincerely hope it works since I have worked so hard to understand binary trees
+I also hope nobody will ever read this text file 
