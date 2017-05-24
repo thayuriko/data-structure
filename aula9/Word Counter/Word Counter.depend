@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1495583884 source:c:\users\yuriko\dropbox\2017.1\estrutura de dados 1\aula9\word counter\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
