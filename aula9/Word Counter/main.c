@@ -87,6 +87,7 @@ void buildTreeFromTextFile(List *list)
     while(fscanf(textFile, "%s", word) == 1){
         push(word, list);
     }
+    fclose(textFile);
 }
 
 int main()
