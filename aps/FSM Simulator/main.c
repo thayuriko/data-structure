@@ -71,9 +71,9 @@ void readStates(int totalStates, Graph *graph, char *sequence)
     }
 
     if(tmp->isFinalState == 1){
-        printf("\n\nEntrada aceitada");
+        printf("\n(* indica o estado inicial)\n\nEntrada aceita");
     } else {
-        printf("\n\nEntrada rejeitada");
+        printf("\n(* indica o estado inicial)\n\nEntrada rejeitada");
     }
 }
 
@@ -105,10 +105,10 @@ void printParameters(int totalStates, Graph *graph)
         tmp = (graph->start+i);
         if(tmp->isFinalState == 1){
             if(j == 0){
-                printf("%d", tmp->stateNo);
+                printf("s%d", tmp->stateNo);
                 j++;
             } else {
-                printf(", %d", tmp->stateNo);
+                printf(", s%d", tmp->stateNo);
             }
         }
     }
@@ -154,12 +154,39 @@ void createStates(int states, Graph *graph)
     printParameters(states, graph);
 }
 
+void symbolSequence(int states, Graph *graph)
+{
+    int choice, i;
+    char sequence[100];
+
+    printf("\n//-----------------------------\nInsira uma sequencia de acoes (ex. 01001001): ");
+    scanf("%s", sequence);
+
+    for(i=0; i<strlen(sequence); i++){
+        if(sequence[i] != '1' && sequence[i] != '0'){
+            printf("String invalida\n");
+
+            symbolSequence(states, graph);
+            return;
+        }
+    }
+
+    readStates(states, graph, sequence);
+
+    printf("\n\nDeseja inserir uma nova sequencia (0/1)? ");
+    scanf("%d", &choice);
+
+    if(choice == 1){
+        symbolSequence(states, graph);
+    }
+
+    return;
+}
+
 int main()
 {
     system("cls");
     int states = 1;
-    int stateNo, choice, i;
-    char sequence[100];
 
     Graph *graph = createGraph();
 
@@ -167,30 +194,8 @@ int main()
     scanf("%d", &states);
 
     createStates(states, graph);
-
-    printf("\nInsira uma sequencia de acoes (ex. 01001001): ");
-    scanf("%s", sequence);
-
-    for(i=0; i<strlen(sequence); i++){
-        if(sequence[i] != '1' && sequence[i] != '0'){
-            printf("String invalida\n");
-            return 0;
-        }
-    }
-
-    readStates(states, graph, sequence);
-
-    printf("\n\n(* indica o estado inicial)\n\nDeseja simular novamente (0/1)? ");
-    scanf("%d", &choice);
-
+    symbolSequence(states, graph);
     deleteStates(states, graph);
-
-    if(choice == 1){
-        main();
-    } else if(choice != 0){
-        printf("Numero invalido\n");
-        return 0;
-    }
 
     return 0;
 }
