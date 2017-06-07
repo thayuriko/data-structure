@@ -1,31 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int tableSize = 0;
+int tableFilled = 0;
+int tableSize;
 
-int createTable(int size)
+int *createTable(int size)
 {
-    int hashTable[size], i;
+    int *hashTable;
+    hashTable = malloc(sizeof(int*)*size);
+    int i;
 
     for(i = 0; i < size; i++){
         hashTable[i] = 0;
     }
 
+    tableSize = size;
+
     return hashTable;
 }
 
-int findPosition(int value, int *hashTable, int pos)
+int *checkTableSize(int *hashTable)
 {
-    int i = pos;
+    if(0.4*tableSize > tableFilled){
+        return hashTable;
+    }
+
+    int i;
+    int *doubledTable = createTable(tableSize*2);
+
+    tableFilled = 0;
+
+    for(i=0; i<tableSize/2; i++){
+        if((hashTable[i] != 0) && (hashTable[i] != -1)){
+            pushElements(hashTable[i], doubledTable);
+        }
+    }
+
+    free(hashTable);
+
+    return doubledTable;
+}
+
+int findPositionToPush(int value, int *hashTable, int pos)
+{
     if(hashTable[pos] == value){
         return pos;
     }
 
     while((hashTable[pos] != 0)&&(hashTable[pos] != -1)){
-        if(pos < 9)
-            findPosition(value, hashTable, pos++);
+        if(pos < tableSize)
+            findPositionToPush(value, hashTable, pos++);
         else
-            findPosition(value, hashTable, 0);
+            findPositionToPush(value, hashTable, 0);
     }
 
     return pos;
@@ -35,43 +61,34 @@ void printTable(int *hashTable)
 {
     int i = 0;
 
-
+    for(i = 0; i < 10; i++){
+        printf("%d ", hashTable[i]);
+    }
 }
 
-void pushElements(int value, int *hashTable, int position)
+void pushElements(int value, int *hashTable)
 {
-    hashTable[position] = value;
-    tableSize++;
+    hashTable = checkTableSize(hashTable);
+
+    int rule = value%10;
+    int pos = findPositionToPush(value, hashTable, rule);
+    hashTable[pos] = value;
+    tableFilled++;
 }
 
 int main()
 {
     int *hashTable = createTable(10);
 
-    int value = 1;
-    int position = findPosition(value, hashTable, value%10);
-    pushElements(value, hashTable, position);
+    pushElements(1, hashTable);
+    pushElements(11, hashTable);
+    pushElements(21, hashTable);
+    pushElements(31, hashTable);
+    pushElements(41, hashTable);
+    pushElements(51, hashTable);
+    pushElements(61, hashTable);
+    pushElements(71, hashTable);
 
-    value = 50;
-    position = findPosition(value, hashTable, value%10);
-    pushElements(value, hashTable, position);
-
-    value = 32;
-    position = findPosition(value, hashTable, value%10);
-    pushElements(value, hashTable, position);
-
-    value = 53;
-    position = findPosition(value, hashTable, value%10);
-    pushElements(value, hashTable, position);
-
-    value = 58;
-    position = findPosition(value, hashTable, value%10);
-    pushElements(value, hashTable, position);
-
-    int i;
-    for(i = 0; i < 10; i++){
-        printf("%d ", hashTable[i]);
-    }
 
     return 1;
 }
