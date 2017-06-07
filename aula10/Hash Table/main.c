@@ -68,8 +68,6 @@ void printTable(int *hashTable)
 
 void pushElements(int value, int *hashTable)
 {
-    hashTable = checkTableSize(hashTable);
-
     int rule = value%10;
     int pos = findPositionToPush(value, hashTable, rule);
     hashTable[pos] = value;
@@ -80,15 +78,22 @@ int main()
 {
     int *hashTable = createTable(10);
 
+    hashTable = checkTableSize(hashTable);
     pushElements(1, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(11, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(21, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(31, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(41, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(51, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(61, hashTable);
+    hashTable = checkTableSize(hashTable);
     pushElements(71, hashTable);
-
 
     return 1;
 }
