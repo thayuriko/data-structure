@@ -80,10 +80,6 @@ void freeMemory(char *hashTable)
 {
     int i;
 
-    for(i=0; i<tableSize; i++){
-        free(hashTable[i]);
-    }
-
     free(hashTable);
 }
 

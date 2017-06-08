@@ -101,7 +101,7 @@ void printParameters(int totalStates, Graph *graph)
     printf("\n             ----------------\n     q0 = s0\n     F = {");
 
     int j = 0;
-    for(i=0; i<totalStates; i++){
+    for(i=-graph->start->stateNo; i<totalStates-graph->start->stateNo; i++){
         tmp = (graph->start+i);
         if(tmp->isFinalState == 1){
             if(j == 0){
