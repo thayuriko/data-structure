@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1496875681 source:c:\users\yuriko\dropbox\2017.1\estrutura de dados 1\aula10\hash table with words\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

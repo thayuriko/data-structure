@@ -93,7 +93,7 @@ void printParameters(int totalStates, Graph *graph)
     printf("\n     Sigma = {0, 1}\n     delta = ----------------");
     printf("\n             | q  | 0  | 1  |");
 
-    for(i=0; i<totalStates; i++){
+    for(i=-graph->start->stateNo; i<totalStates-graph->start->stateNo; i++){
         tmp = (graph->start+i);
         printf("\n             | s%d | s%d | s%d |", tmp->stateNo, tmp->next0->stateNo, tmp->next1->stateNo);
     }
